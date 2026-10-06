@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "Coldline Task 4.9 public answer contract. Six answers: the plan node that reads the audit table before and after the change, the kind of change, the two medians poe audit-benchmark printed, and whether applying the change blocks writes to the audit table. The schema checks the format only. poe verify compares the plan nodes with the plans it observes, the change type with the diff, the write-blocking answer with how the migration builds its index (false for a rewrite), and the after median with the before median. This Task has no protected answer check.",
+  "title": "Coldline Task 4.9 answers",
+  "description": "Your slow-query diagnosis: the plan nodes, the change, the two medians and the cost to writes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["answers"],
+  "properties": {
+    "answers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "before_plan_node",
+        "before_median_ms",
+        "change_type",
+        "after_plan_node",
+        "after_median_ms",
+        "blocks_writes_during_change"
+      ],
+      "properties": {
+        "before_plan_node": {
+          "$ref": "#/$defs/plan_node",
+          "description": "Step 1: the node type of the plan step that reads the audit table, in the plan of the query as supplied."
+        },
+        "before_median_ms": {
+          "$ref": "#/$defs/median_ms",
+          "description": "Step 1: the median poe audit-benchmark printed before any change."
+        },
+        "change_type": {
+          "enum": ["index", "rewrite"],
+          "description": "Step 2: index for one new migration that adds one index, rewrite for a rewrite of trail_for_exception."
+        },
+        "after_plan_node": {
+          "$ref": "#/$defs/plan_node",
+          "description": "Step 2: the node type of the plan step that reads the audit table after your change, even if a sort step sits above it."
+        },
+        "after_median_ms": {
+          "$ref": "#/$defs/median_ms",
+          "description": "Step 3: the median poe audit-benchmark printed after your change, with the same exception."
+        },
+        "blocks_writes_during_change": {
+          "type": "boolean",
+          "description": "Step 3: whether applying your migration blocks writes to the audit table while the index builds; false for a rewrite."
+        }
+      }
+    }
+  },
+  "$defs": {
+    "plan_node": {
+      "description": "A plan node type as EXPLAIN prints it at the start of the plan line: one to five words, each starting with a capital letter, without the words from `using` or `on` onwards and without the costs.",
+      "type": "string",
+      "maxLength": 40,
+      "pattern": "^[A-Z][A-Za-z]*( [A-Z][A-Za-z]*){0,4}$"
+    },
+    "median_ms": {
+      "description": "A median in milliseconds, as poe audit-benchmark prints it: a positive number, for example 12.345.",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 600000
+    }
+  }
+}

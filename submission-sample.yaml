@@ -1,0 +1,20 @@
+# Coldline - Task 4.9
+# File: submission-sample.yaml
+# Component: Fictional completed answer sheet
+# Purpose: Show the accepted shape.
+# Interacts With: docs/contracts/submission.schema.json
+# Sprint/Task: Sprint 4 - Project 4 / Task 4.9
+# Concepts: Answer-sheet shape
+# Tools: YAML
+
+# Use this file for format only. Its values are fictional and do not describe this Task's
+# plans, change or measurements: copying it fails verification, and so would its values.
+# Do not include secrets, personal data, or local absolute paths.
+
+answers:
+  before_plan_node: Hash Join
+  before_median_ms: 18.25
+  change_type: rewrite
+  after_plan_node: Nested Loop
+  after_median_ms: 26.5
+  blocks_writes_during_change: true

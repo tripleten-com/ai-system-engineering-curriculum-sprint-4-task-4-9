@@ -1,0 +1,16 @@
+# Coldline - Task 4.9
+# File: submission-template.yaml
+# Component: Public verifier fixture
+# Purpose: Exercise the shipped blank answer sheet's shape inside the public test suite.
+# Interacts With: tests/contract/test_submission.py
+# Sprint/Task: Sprint 4 - Project 4 / Task 4.9
+# Concepts: Deterministic assessment, blank answers named by field
+# Tools: YAML
+
+answers:
+  before_plan_node: ""
+  before_median_ms: 0
+  change_type: ""
+  after_plan_node: ""
+  after_median_ms: 0
+  blocks_writes_during_change: null

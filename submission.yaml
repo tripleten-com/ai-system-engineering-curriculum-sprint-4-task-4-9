@@ -1,0 +1,48 @@
+# Coldline - Task 4.9
+# File: submission.yaml
+# Component: Student answer sheet
+# Purpose: Record the plan step before and after your change, the kind of change, the two medians, and the cost to writes.
+# Interacts With: Submission schema, public verifier, slow-query contract checks
+# Sprint/Task: Sprint 4 - Project 4 / Task 4.9
+# Concepts: Query plans, indexes, measurement, the cost of a change
+# Tools: YAML
+
+# Complete submission.yaml from your own runs and the sources named beside each answer.
+# Keep the supplied keys; replace the empty strings, the zeros and the null using each
+# field's stated type. Empty values fail verification.
+# Use submission-sample.yaml for format only; do not copy its fictional values.
+# Do not include secrets, personal data, or local absolute paths.
+
+answers:
+  # Step 1: the plan before any change
+  # Source: `poe audit-explain <exception_id>` with the id in README.md, before your change.
+  # Record the node type of the step that reads far more rows than the query returns: the
+  # words at the start of that plan line, before `using`, `on` or the costs, with their
+  # capital letters and spaces as printed, for example Hash Join or Nested Loop. If the
+  # name starts with Parallel, either form is accepted. `poe verify` compares it with the
+  # node that reads the audit table in the plan it observes for the supplied query.
+  before_plan_node: ""
+  # Source: the median_ms line `poe audit-benchmark <exception_id>` printed before your
+  # change: a number of milliseconds, as printed, for example 12.345.
+  before_median_ms: 0
+
+  # Step 2: your one change
+  # index    one new migration in migrations/versions/ that adds one index
+  # rewrite  a rewrite of the SQL in trail_for_exception in src/common/audit_queries.py
+  # `poe verify` compares it with your diff.
+  change_type: ""
+  # Source: `poe audit-explain <exception_id>` after your change. Record the node type of
+  # the step that now reads the audit table in place of the one you recorded above, in the
+  # same form, even if a sort step sits above it. `poe verify` compares it with the node
+  # that reads the audit table in the plans it observes for your query.
+  after_plan_node: ""
+
+  # Step 3: the difference and the cost
+  # Source: the median_ms line `poe audit-benchmark <exception_id>` printed after your
+  # change, with the same exception id: a number of milliseconds, as printed.
+  # `poe verify` checks that it is lower than before_median_ms; it times nothing itself.
+  after_median_ms: 0
+  # Whether applying your migration blocks writes to the audit table while the index
+  # builds: true or false, without quotes. For a rewrite, record false. `poe verify`
+  # compares it with the SQL your migration runs.
+  blocks_writes_during_change: null

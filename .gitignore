@@ -1,0 +1,26 @@
+# Coldline - Task 4.5
+# File: .gitignore
+# Component: Repository hygiene
+# Purpose: Exclude local tools, caches, runtime state, and generated security evidence from commits.
+# Interacts With: Git and local development tools, poe security-scan, the Task 6 evidence tools
+# Sprint/Task: Sprint 4 - Project 4 / Task 4.5
+# Concepts: Clean working tree, generated files never in a Task diff
+# Tools: Git
+
+.env
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.tools/
+.venv/
+**/__pycache__/
+*.py[cod]
+
+# Optional captures describe this checkpoint; they are not submission artifacts.
+.benchmark/
+
+# Task 4.5: the scan report and the software bill of materials `poe security-scan` writes,
+# and the evidence files the Task 6 tools will write. Generated on every run, uploaded by
+# the security-gate job as a workflow artifact, never part of a Task diff.
+reports/
+evidence/
