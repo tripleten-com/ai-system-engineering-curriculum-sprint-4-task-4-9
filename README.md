@@ -8,13 +8,12 @@ where the time goes, and makes one change, a new index or a rewrite of the query
 effect you prove with the plan and with timings, and whose cost you name. You record six
 answers in `submission.yaml`. This Task is optional.
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/tripleten-com/ai-system-engineering-curriculum-sprint-4-task-4-9/tree/main)
-
 ## Start the system
 
 Prerequisites are Python 3.12 and Docker with Compose v2. The supplied bootstrap supports macOS
 arm64/x86-64, Windows x86-64, and Linux x86-64/aarch64, and installs pinned uv 0.11.8 under
-`.tools/bin`. If your computer cannot run the stack locally, use the Codespaces button above.
+`.tools/bin`. If your computer cannot run the stack locally, ask your instructor about GitHub
+Codespaces.
 
 On macOS and most Linux distributions the interpreter is `python3`; substitute it wherever these
 commands say `python`.
